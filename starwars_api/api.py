@@ -8,6 +8,7 @@ from starwars_api.models import Rating
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 
+
 class RatingAPI(APIView):
     def post(self, request, **kwargs):
         """
@@ -32,9 +33,9 @@ class CharacterAPI(APIView):
     @method_decorator(cache_page(60))
     def get(self, request, **kwargs):
         """
-        :param request:
-        :param kwargs:
-        :return:
+        :param request: Request and body of the post
+        :param kwargs: URL parameters
+        :return: Payload with detailed information about the character
         """
 
         id_ = kwargs.get('character_id')
