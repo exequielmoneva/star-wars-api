@@ -1,6 +1,6 @@
 import requests
 from django.shortcuts import render
-from rest_framework.exceptions import NotFound, APIException, ParseError
+from rest_framework.exceptions import NotFound, ParseError
 
 from starwars_api.models import Rating
 
@@ -14,7 +14,7 @@ def index(request):
 
 class CharacterAPIService:
     @classmethod
-    def get_people(cls, request, id_):
+    def get_people(cls, id_):
         """
         :param id_: id of the character
         :return: Information of the character
@@ -26,7 +26,7 @@ class CharacterAPIService:
         return people
 
     @classmethod
-    def get_planet(cls, request, character):
+    def get_planet(cls, character):
         """
         :param character: id of the character
         :return: Planet of the character
@@ -39,7 +39,7 @@ class CharacterAPIService:
             return {}
 
     @classmethod
-    def get_species(cls, request, character):
+    def get_species(cls, character):
         """
         :param character: id of the character
         :return: Species of the character
@@ -55,7 +55,8 @@ class CharacterAPIService:
     def get_data_as_dictionary(
             cls, character, planet, species, average, maximum):
         """
-
+        :param maximum: Top rating for character
+        :param average: Average rating for character
         :param character: Information of the character
         :param planet: Planet of the character
         :param species: Species of the character
@@ -98,7 +99,6 @@ class CharacterAPIService:
     @classmethod
     def maximum_rating(cls, character_id):
         """
-
         :param character_id: Id of the character
         :return: Top rating based on stored ratings.
         """
@@ -115,5 +115,8 @@ class CharacterAPIService:
 class RatingAPIService:
     @classmethod
     def validate_rating(cls, rating):
+        """
+        :param rating: Rating given inside the POST body
+        """
         if rating > 5 or rating < 1:
             raise ParseError('Rating value must be between 1 and 5')

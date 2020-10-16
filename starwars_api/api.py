@@ -34,9 +34,9 @@ class CharacterAPI(APIView):
         """
 
         id_ = kwargs.get('character_id')
-        character = CharacterAPIService.get_people(request, id_)
-        planet = CharacterAPIService.get_planet(request, character)
-        species = CharacterAPIService.get_species(request, character)
+        character = CharacterAPIService.get_people(id_)
+        planet = CharacterAPIService.get_planet(character)
+        species = CharacterAPIService.get_species(character)
         return Response(
             CharacterAPIService.get_data_as_dictionary(
                 character, planet, species,
