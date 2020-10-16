@@ -5,7 +5,8 @@ from .serializers import DataSerializer
 from rest_framework.views import APIView
 from rest_framework import status
 from starwars_api.models import Rating
-
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 
 class RatingAPI(APIView):
     def post(self, request, **kwargs):
@@ -27,6 +28,8 @@ class RatingAPI(APIView):
 
 
 class CharacterAPI(APIView):
+    # Cache page for the requested url
+    @method_decorator(cache_page(60))
     def get(self, request, **kwargs):
         """
         :param request:
