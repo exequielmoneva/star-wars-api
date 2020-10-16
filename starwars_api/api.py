@@ -1,12 +1,11 @@
-from rest_framework.response import Response
-
-from starwars_api.views import CharacterAPIService, RatingAPIService
-from .serializers import DataSerializer
-from rest_framework.views import APIView
-from rest_framework import status
-from starwars_api.models import Rating
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from starwars_api.serializers import DataSerializer
+from starwars_api.views import CharacterAPIService, RatingAPIService
 
 
 class RatingAPI(APIView):
@@ -29,8 +28,7 @@ class RatingAPI(APIView):
 
 
 class CharacterAPI(APIView):
-    # Cache page for the requested url
-    @method_decorator(cache_page(60))
+    @method_decorator(cache_page(60 * 15))  # Cache: 15 minutes
     def get(self, request, **kwargs):
         """
         :param request: Request and body of the post
