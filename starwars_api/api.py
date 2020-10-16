@@ -28,7 +28,6 @@ class RatingAPI(APIView):
 
 
 class CharacterAPI(APIView):
-    @method_decorator(cache_page(60 * 15))  # Cache: 15 minutes
     def get(self, request, **kwargs):
         """
         :param request: Request and body of the post

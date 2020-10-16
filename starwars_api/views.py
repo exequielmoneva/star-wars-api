@@ -74,7 +74,7 @@ class CharacterAPIService:
             'homeworld': {
                 'name': planet.get('name'),
                 'population': planet.get('population'),
-                'known_species_count': len(planet.get('residents'))
+                'known_residents_count': len(planet.get('residents'))
             },
             'species_name': species.get('name'),
             'average_rating': average,
