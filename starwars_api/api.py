@@ -16,6 +16,7 @@ class RatingAPI(APIView):
         """
         req = request.data
         id_ = kwargs.get('character_id')
+        RatingAPIService.validate_character_existence(id_)
         req['character_id'] = id_
         RatingAPIService.validate_rating(req.get('rating'))
         serializer = DataSerializer(data=req)

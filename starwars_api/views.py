@@ -120,3 +120,12 @@ class RatingAPIService:
         """
         if rating > 5 or rating < 1:
             raise ParseError('Rating value must be between 1 and 5')
+
+    @classmethod
+    def validate_character_existence(cls, id_):
+        """
+        :param id_: id of the character
+        """
+        response = requests.get('http://swapi.dev/api/people/' + str(id_))
+        if response.status_code != 200:
+            raise NotFound('Character id not valid')
