@@ -14,6 +14,7 @@ A simple API to check information about your favourite StarWars characters.
 # Requirements
  - Docker
  - Python 3.8
+ - A virtual environment (optional but recommended)
 
 # Installation
 Inside the root folder of the project, run the following command
