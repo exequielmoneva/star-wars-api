@@ -14,7 +14,6 @@ A simple API to check information about your favourite StarWars characters.
 # Requirements
  - Docker
  - Python 3.8
- - A virtual environment (optional but recommended)
 
 # Installation
 Inside the root folder of the project, run the following command
@@ -27,6 +26,57 @@ Then start the project with the following command
 
 ```sh
 > docker-compose up
+```
+
+Now, you can test the endpoints at:
+
+```
+http://localhost:8000/
+```
+# Available API endponits:
+
+## GET information about a character
+```
+http://localhost:8000/character/character_id
+```
+Example response with character_id 1:
+```json
+{
+    "name": "Luke Skywalker",
+    "height": "172",
+    "mass": "77",
+    "hair_color": "blond",
+    "skin_color": "fair",
+    "eye_color": "blue",
+    "birth_year": "19BBY",
+    "gender": "male",
+    "homeworld": {
+        "name": "Tatooine",
+        "population": "200000",
+        "known_residents_count": 10
+    },
+    "species_name": null,
+    "average_rating": 3.0,
+    "max_rating": 5
+}
+```
+
+## POST a rating for a character
+```
+http://localhost:8000/character/character_id/rating
+```
+Example body of the post:
+```json
+{
+    "rating": 1
+}
+```
+Example response with character_id 1:
+```json
+{
+    "rating": 1.0,
+    "character_id": 1
+}
 ```
 
 ### ToDos
